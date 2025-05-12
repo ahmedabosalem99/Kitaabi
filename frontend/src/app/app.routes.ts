@@ -20,7 +20,7 @@ import { CancelComponent } from './features/cancel/cancel.component';
 import { PurchasesComponent } from './features/purchases/purchases.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent, pathMatch: 'full', title:"Home"},
   { path: 'books', component: BookListComponent, title:"Books" },
 
   {
