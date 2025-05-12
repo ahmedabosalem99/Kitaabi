@@ -9,8 +9,13 @@ const path = require("path"); // لاستعماله في توجيه المسار
 const app = express();
 const PORT = 4242;
 
+const corsOptions = {
+  origin: process.env['FRONTEND_URL'] || 'http://localhost:4200',
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static("public")); // خدمة الملفات الثابتة من مجلد public
 
