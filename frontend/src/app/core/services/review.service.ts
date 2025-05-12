@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/reviews';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/reviews';
 
   getReviewsByBookId(bookId: string) {
     return this.http.get<Review[]>(`${this.apiUrl}?bookId=${bookId}`);

@@ -12,7 +12,7 @@ import { Observable, forkJoin } from 'rxjs';
 export class BookService {
 
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/books';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/books';
 
   // Read
   getBooks() {

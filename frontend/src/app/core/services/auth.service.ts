@@ -10,7 +10,7 @@ import { UserRole } from '../models/UserRole';
 })
 export class AuthService {
   http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/users';
 
   register<T = unknown>(payload: RegisterRequest): Observable<T> {
     return new Observable<T>((observer) => {
@@ -52,7 +52,7 @@ export class AuthService {
     return new Observable<T>((observer) => {
       this.http
         .get<any[]>(
-          `http://localhost:3000/users?email=${payload.email}&password=${payload.password}`
+          `https://rain-sly-yuzu.glitch.me/users?email=${payload.email}&password=${payload.password}`
         )
         .subscribe({
           next: (users) => {

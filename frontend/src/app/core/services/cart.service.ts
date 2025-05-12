@@ -10,7 +10,7 @@ export class CartService {
   private auth = inject(AuthService);
   private user = this.auth.getUser();
 
-  private apiUrl = 'http://localhost:3000/carts';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/carts';
 
   currentCart = signal<Cart | null>(null);
   loading = signal(true);

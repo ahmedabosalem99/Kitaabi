@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/dashboard').subscribe(data => {
+    this.http.get('https://rain-sly-yuzu.glitch.me/dashboard').subscribe(data => {
       this.dashboardData = data;
     });
   }

@@ -15,7 +15,7 @@ export interface Category {
 })
 export class CategoryService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/categories'; 
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/categories';
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.apiUrl).pipe(

@@ -5,7 +5,7 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/users';
 
   getUsers() {
     return this.http.get<User[]>(this.apiUrl);

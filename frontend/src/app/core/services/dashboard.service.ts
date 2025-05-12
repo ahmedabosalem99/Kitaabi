@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000/dashboard';
+  private apiUrl = 'https://rain-sly-yuzu.glitch.me/dashboard';
 
   constructor(private http: HttpClient) {}
 

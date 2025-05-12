@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../core/models/book';
 import { OrderService } from '../../core/services/order.service';
 import { BookService } from '../../core/services/book.service';
-import { Observable, forkJoin, switchMap, of, map } from 'rxjs';
+import { Observable, forkJoin, switchMap, of, map, finalize } from 'rxjs';
 import { BookReviewComponent } from "../books/book-review/book-review.component";
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-purchases',
-  imports: [BookReviewComponent, RouterModule],
+  imports: [BookReviewComponent, RouterModule, CommonModule],
   templateUrl: './purchases.component.html',
   styleUrl: './purchases.component.css'
 })
@@ -17,14 +18,17 @@ export class PurchasesComponent implements OnInit {
   userId = JSON.parse(localStorage.getItem("user")!).id;
   allUserBooks: Book[] = [];
   allBooksPurchaseDate : {[bookId: string]: string} = {};
+  isLoading = true; // Added loading state
 
   constructor(private orderService: OrderService, private bookService: BookService){}
 
-ngOnInit(): void {
-  this.getPurchasedBooks(this.userId).subscribe(books => {
-    this.allUserBooks = books;
-});
-}
+  ngOnInit(): void {
+    this.getPurchasedBooks(this.userId).pipe(
+      finalize(() => this.isLoading = false) // Set loading to false when observable completes
+    ).subscribe(books => {
+      this.allUserBooks = books;
+    });
+  }
 
   getPurchasedBooks(userId: string): Observable<Book[]> {
     return this.orderService.getUserOrders(userId).pipe(
