@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: process.env['RAILWAY_BACKEND_URL'] || '/api' // Fallback to relative path
+  apiUrl: 'http://localhost:4242' // Fallback to relative path
 };
