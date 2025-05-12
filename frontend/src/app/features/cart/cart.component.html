@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <h2>Your Shopping Cart</h2>
+
+  <!-- Loading State -->
+  <div *ngIf="cartService.loading()" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="cartService.error()" class="alert alert-danger my-4">
+    {{ cartService.error() }}
+  </div>
+
+  <!-- Empty Cart -->
+  <div
+    *ngIf="
+      !cartService.currentCart()?.cartBooks?.length && !cartService.loading()
+    "
+    class="alert alert-info mt-3"
+  >
+    Your cart is empty
+  </div>
+
+  <!-- Cart Items -->
+  <div *ngIf="cartService.currentCart()?.cartBooks?.length" class="mt-4">
+    <div
+      class="cart-card"
+      *ngFor="let item of cartService.currentCart()?.cartBooks"
+    >
+      <div class="card-row">
+        <div class="card-image">
+          <img [src]="item.book.imageURL" [alt]="item.book.bookName" />
+        </div>
+        <div class="card-details">
+          <h5 class="book-title">{{ item.book.bookName }}</h5>
+          <p class="author">{{ item.book.authorName }}</p>
+          <div class="quantity-price">
+            <span class="quantity-badge"
+              >Quantity: {{ item.bookQuantity }}</span
+            >
+            <p class="price">Price: {{ item.book.price | currency }}</p>
+          </div>
+        </div>
+        <div class="card-actions large">
+  <p class="item-total fw-bold">
+    {{ calculateItemTotal(item) | currency }}
+  </p>
+  <div class="controls d-flex align-items-center gap-3">
+    <div class="btn-group">
+      <button
+        class="btn btn-outline-secondary btn-lg adjust"
+        (click)="updateQuantity(item.book.id, item.bookQuantity - 1)"
+        [disabled]="item.bookQuantity <= 1"
+      >
+        -
+      </button>
+      <button class="btn btn-outline-secondary btn-lg adjust" disabled>
+        {{ item.bookQuantity }}
+      </button>
+      <button
+        class="btn btn-outline-secondary btn-lg adjust"
+        (click)="updateQuantity(item.book.id, item.bookQuantity + 1)"
+      >
+        +
+      </button>
+    </div>
+    <button
+      class="btn btn-danger btn-lg remove d-flex align-items-center justify-content-center"
+      (click)="removeItem(item.book.id)"
+    >
+      <i class="bi bi-trash fs-5"></i>
+    </button>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <!-- Update the total section in cart.component.html -->
+    <div class="text-end mt-4 border-top pt-3">
+      <h4>Total: {{ cartService.getTotal() | currency }}</h4>
+      <button
+        class="btn btn-success btn-lg mt-3"
+        routerLink="/checkout"
+        [disabled]="!cartService.currentCart()?.cartBooks?.length"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>

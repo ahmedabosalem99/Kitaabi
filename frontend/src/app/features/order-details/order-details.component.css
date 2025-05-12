@@ -1,0 +1,11 @@
+.bg-cream {
+  background-color: var(--color-cream) !important;
+}
+
+.bg-light-subtle {
+  background-color: #f9f9f9 !important;
+}
+
+.fs-sm {
+  font-size: 0.95rem;
+}

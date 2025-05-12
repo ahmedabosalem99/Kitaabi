@@ -1,0 +1,27 @@
+.wishlist-btn {
+background: transparent;
+border: none;
+cursor: pointer;
+font-size: 1.4rem;
+/* padding: 0.25rem 0.5rem; */
+color: transparent;
+transition: transform 0.2s ease, color 0.2s ease;
+/* position: relative; */
+}
+
+.wishlist-btn::before {
+content: '\f004'; /* Font Awesome heart unicode */
+font-family: 'Font Awesome 5 Free';
+font-weight: 400; /* Regular (outlined) */
+color: #ff7043;
+position: relative;
+/* margin-right: 0; */
+}
+
+.wishlist-btn.active::before {
+font-weight: 900; /* Solid (filled) */
+}
+
+.wishlist-btn:hover {
+transform: scale(1.1);
+}

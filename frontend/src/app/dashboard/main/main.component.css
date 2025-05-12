@@ -1,0 +1,61 @@
+/* Shared container styling */
+.top-section,
+.middle-section,
+.bottom-section {
+  max-width: 1200px;
+  margin: 0 auto; /* center horizontally */
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Top Section */
+.top-section {
+  flex-direction: column;
+}
+
+/* Middle Section */
+.middle-section .widget,
+.bottom-section .widget {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #939393;
+  padding: 10px;
+}
+
+/* Middle Widgets */
+.middle-section .widget.left {
+  flex: 1 1 60%;
+  min-width: 300px;
+  height: 350px;
+}
+
+.middle-section .widget.right {
+  flex: 1 1 35%;
+  min-width: 250px;
+  height: 350px;
+}
+
+/* Bottom Widgets */
+.bottom-section .widget.left,
+.bottom-section .widget.right {
+  flex: 1 1 48%;
+  min-width: 280px;
+  height: 250px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .middle-section,
+  .bottom-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .middle-section .widget,
+  .bottom-section .widget {
+    width: 100%;
+  }
+}

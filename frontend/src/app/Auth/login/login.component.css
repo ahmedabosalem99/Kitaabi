@@ -1,0 +1,184 @@
+/* =========================
+   Bookstore Design System
+   Register / Login Page
+   ========================= */
+
+/* Color Palette */
+:root {
+  --color-maroon: #7d3c55; /* primary */
+  --color-brown: #644536; /* secondary text */
+  --color-cream: #f5f1e8; /* page background */
+  --color-gold: #b8a361; /* accent / secondary buttons */
+  --color-blue: #5d7b8a; /* tertiary */
+  --radius-md: 0.5rem;
+  --transition: 0.25s ease;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Page background */
+body {
+  background: var(--color-cream);
+  font-family: "Inter", system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Card container */
+.card {
+  width: clamp(320px, 90%, 420px);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 2.5rem 2rem;
+}
+
+/* Fade‑in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Title */
+.title {
+  font-family: Georgia, Cambria, serif;
+  font-size: 2rem;
+  color: var(--color-maroon);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-brown);
+}
+
+/* Inputs */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d5d4d2;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+input:focus {
+  outline: none;
+  border-color: var(--color-maroon);
+  box-shadow: 0 0 0 3px rgba(125, 60, 85, 0.25);
+}
+
+/* Password wrapper & toggle */
+.pass-wrapper {
+  position: relative;
+}
+.pass-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-brown);
+  display: flex;
+  align-items: center;
+}
+.pass-toggle:hover svg {
+  stroke: var(--color-maroon);
+}
+
+/* Inline errors */
+.control-error {
+  color: var(--color-maroon);
+  font-size: 0.875rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+/* Primary button */
+.btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-maroon);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.btn svg {
+  stroke: currentColor;
+}
+.btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Links */
+.link {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-brown);
+  margin-top: 1.25rem;
+}
+.link a {
+  color: var(--color-maroon);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.link a:hover {
+  color: var(--color-brown);
+  text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (min-width: 480px) {
+  .card {
+    padding: 3rem 2.75rem;
+  }
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+.control:has(.ng-invalid.ng-touched.ng-dirty) label {
+  color: #f98b75;
+}
+
+input.ng-invalid.ng-touched.ng-dirty {
+  background-color: #fbdcd6;
+  border-color: #f84e2c;
+}

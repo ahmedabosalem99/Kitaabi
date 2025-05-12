@@ -1,0 +1,254 @@
+/* =======================================================================
+   Bookstore Header – complete styling
+   (v3 – final fix for “Home + any route” double‑underline)
+   ======================================================================= */
+
+/* ---------- Navbar container ---------- */
+.navbar {
+  background-color: #f5f1e8 !important; /* Cream */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 1rem;
+  font-family: "Inter", system-ui, sans-serif;
+  z-index: 1030;
+}
+
+/* ---------- Brand ---------- */
+.navbar-brand {
+  font-family: Georgia, Cambria, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #7d3c55 !important; /* Maroon */
+  transition: color 0.3s ease;
+}
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #b8a361 !important; /* Gold */
+}
+
+/* ---------- Toggler (hamburger) ---------- */
+.navbar-toggler {
+  border: 1px solid #644536; /* Brown */
+}
+.navbar-toggler-icon {
+  background-image: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  position: relative;
+}
+.navbar-toggler-icon,
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  display: block;
+  content: "";
+  background-color: #644536;
+  height: 2px;
+  border-radius: 1px;
+}
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+.navbar-toggler-icon::before {
+  top: -6px;
+}
+.navbar-toggler-icon::after {
+  top: 6px;
+}
+
+/* ---------- Nav links ---------- */
+.navbar-dark .nav-link {
+  position: relative;
+  color: #644536; /* Brown */
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus {
+  color: #7d3c55; /* Maroon */
+}
+
+/* --- Underline via pseudo‑element --- */
+.navbar-dark .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* Show underline on every active link … */
+.navbar-dark .nav-link.active::after {
+  background: #7d3c55; /* Maroon */
+}
+
+/* … then suppress it on any active link that has
+     *another* active link later in the list.  Uses the
+     general‑sibling selector (~) inside :has(), which
+     works for Books, Orders, Dashboard, etc. */
+.navbar-nav
+  .nav-item:has(~ .nav-item .nav-link.active)
+  .nav-link.active::after {
+  background: transparent;
+}
+
+/* ---------- Badges & icons ---------- */
+.badge.bg-primary {
+  background-color: #7d3c55 !important; /* Maroon */
+  font-size: 0.75rem;
+  padding: 0.35em 0.65em;
+  border-radius: 999px;
+}
+
+.navbar .bi-heart {
+  color: #7d3c55;
+  transition: transform 0.2s ease;
+}
+.navbar .bi-heart:hover {
+  transform: scale(1.1);
+}
+
+/* ---------- Spacing for right‑aligned items ---------- */
+.navbar-nav .nav-item + .nav-item {
+  margin-left: 0.5rem;
+}
+
+/* ---------- Collapse menu (mobile) ---------- */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: #f5f1e8;
+    padding: 1rem;
+  }
+  .navbar-dark .nav-link {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ---------- Focus outline for accessibility ---------- */
+.navbar a:focus-visible {
+  outline: 3px solid #b8a361; /* Gold */
+  outline-offset: 2px;
+}
+
+
+
+/*-------- Wishlist Icon --------------------------------*/
+.wishlist-link {
+  display: inline-block;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.wishlist-icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.wishlist-icon:hover {
+  transform: scale(1.1);
+}
+
+.wishlist-badge {
+  position: absolute;
+  top: 3px; /* Margin from top */
+  left: 36px; /* Move closer to icon */
+  background-color: #7d3c55;; /* Mauve */
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.20rem 0.6rem;
+  border-radius: 500px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+
+/*-------- Cart Icon --------------------------------*/
+.cart-link {
+  display: inline-block;
+  font-family: Inter, system-ui, sans-serif;
+  position: relative;
+}
+
+.cart-icon {
+  font-size: 1.8rem; /* Scales up the emoji */
+  transition: transform 0.2s ease-in-out;
+  color: #7D3C55; /* Maroon from your palette */
+}
+
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 3px;
+  left: 35px; /* Adjusted for cart emoji */
+  background-color: #7D3C55; /* Maroon (matching wishlist badge) */
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.20rem 0.6rem;
+  border-radius: 500px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+/***********LogIn*******************************/
+.login-link, .register-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.login-badge, .register-badge {
+  background-color: #7D3C55; /* Maroon */
+  color: white;
+  margin-top: 2px; /* Adjusted margin for better spacing */
+  font-size: 1rem; /* Increased font size for better visibility */
+  padding: 0.45rem 1.25rem; /* Adjusted padding for a larger badge */
+  border-radius: 500px;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.login-badge:hover, .register-badge:hover {
+  background-color: #6a3147; /* Slightly darker on hover */
+  cursor: pointer;
+}
+
+
+/***********LogOut*******************************/
+.logout-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+
+.logout-icon i {
+  font-size: 1.75rem; /* Increase this value to make the icon bigger */
+}
+
+.logout-badge {
+  background-color: #7D3C55; /* Maroon */
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.50rem 0.75rem;
+  border-radius: 500px;
+  font-weight: bold;
+  line-height: 1.25;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.logout-badge:hover {
+  background-color: #6a3147; /* Slightly darker on hover */
+  cursor: pointer;
+}
+

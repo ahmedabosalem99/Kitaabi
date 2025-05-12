@@ -1,0 +1,63 @@
+<div class="container-fluid p-0 bg-white border-end">
+  <form (ngSubmit)="applyFilters()" class="d-flex flex-column h-100">
+    <!-- Sticky Header -->
+    <div class="bg-light border-bottom sticky-top p-3 z-1">
+      <h5 class="mb-0">Filter Books</h5>
+    </div>
+
+    <!-- Scrollable Filter Body -->
+    <div class="flex-grow-1 overflow-auto p-3">
+      <!-- Categories -->
+      <div class="mb-4">
+        <h6 class="text-uppercase text-muted small fw-bold mb-3">Categories</h6>
+        <div *ngFor="let category of categories" class="form-check mb-2">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="selectedCategories[category.id]"
+            name="category-{{ category.id }}"
+            id="category-{{ category.id }}"
+            (change)="applyFilters()"
+          />
+          <label
+            class="form-check-label small"
+            for="category-{{ category.id }}"
+          >
+            {{ category.name }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Price Ranges -->
+      <div class="mb-4">
+        <h6 class="text-uppercase text-muted small fw-bold mb-3">
+          Price Range
+        </h6>
+        <div *ngFor="let range of priceRanges" class="form-check mb-2">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="selectedPrices[range.value]"
+            name="price-{{ range.value }}"
+            id="price-{{ range.value }}"
+            (change)="applyFilters()"
+          />
+          <label class="form-check-label small" for="price-{{ range.value }}">
+            {{ range.label }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="bg-light border-top p-3 sticky-bottom z-1">
+      <button
+        type="button"
+        class="btn btn-primary w-100"
+        (click)="resetFilters()"
+      >
+        Reset Filters
+      </button>
+    </div>
+  </form>
+</div>

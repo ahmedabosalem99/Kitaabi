@@ -1,0 +1,44 @@
+/* Font classes */
+.heading-font {
+  font-family: Georgia, Cambria, serif;
+}
+.body-font {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Color tokens */
+.text-maroon {
+  color: #7d3c55;
+}
+
+/* Button Styles */
+.btn-primary-custom {
+  background-color: #7d3c55;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-primary-custom:hover {
+  background-color: #5e2f41;
+}
+
+.btn-remove {
+  background-color: #b8a361;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-remove:hover {
+  background-color: #9e8a50;
+}
+
+/* Card Styling */
+.book-card {
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+}
+.book-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,91 @@
+<div class="container section">
+  <div *ngIf="order; else loadingTpl">
+    <div class="card border-0 shadow rounded-4 overflow-hidden">
+      <!-- Header -->
+      <div class="card-header bg-primary text-white d-flex flex-column">
+        <h3 class="mb-1 fw-semibold">🧾 Order #{{ order.id }}</h3>
+        <small class="opacity-75">Placed on {{ order.orderDate | date: 'mediumDate' }}</small>
+      </div>
+
+      <!-- Confirmation Component -->
+      <app-order-confirmation [order]="order" class="p-4"></app-order-confirmation>
+
+      <!-- Details Section -->
+      <div class="row g-4 px-4 pb-4">
+        <!-- Payment Info -->
+        <div class="col-md-6">
+          <div class="card h-100 border-light bg-light-subtle rounded-3">
+            <div class="card-body">
+              <h5 class="text-secondary mb-3">
+                💳 Payment Information
+              </h5>
+              <dl class="row fs-sm">
+                <dt class="col-sm-5">Payment Method:</dt>
+                <dd class="col-sm-7">{{ order.paymentMethod || "Credit Card" }}</dd>
+
+                <dt class="col-sm-5">Transaction ID:</dt>
+                <dd class="col-sm-7 text-break">
+                  {{ order.transactionId || "N/A" }}
+                </dd>
+
+                <dt class="col-sm-5">Total Paid:</dt>
+                <dd class="col-sm-7 fw-bold text-success">
+                  {{ order.totalPrice | currency }}
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Status -->
+        <div class="col-md-6">
+          <div class="card h-100 border-light bg-light-subtle rounded-3">
+            <div class="card-body">
+              <h5 class="text-secondary mb-3">
+                📌 Order Status
+              </h5>
+              <ul class="list-group list-group-flush">
+                <li
+                  *ngFor="let status of order.statusHistory"
+                  class="list-group-item bg-transparent px-0 d-flex gap-3 align-items-start"
+                >
+                  <i class="bi bi-check-circle-fill text-success fs-5 mt-1"></i>
+                  <div>
+                    <strong>{{ status.state }}</strong><br />
+                    <small class="text-muted">{{ status.date | date: 'medium' }}</small>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="card-footer bg-cream d-flex justify-content-between align-items-center px-4 py-3 border-top">
+        <a routerLink="/orders" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left me-2"></i>Back to History
+        </a>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary" (click)="printOrder()">
+            <i class="bi bi-printer me-2"></i>Print
+          </button>
+          <button class="btn btn-primary" (click)="reorder()">
+            <i class="bi bi-cart-plus me-2"></i>Reorder
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading / Error Template -->
+  <ng-template #loadingTpl>
+    <div *ngIf="loading" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2">Loading order details...</p>
+    </div>
+    <div *ngIf="!loading" class="alert alert-warning text-center">
+      <i class="bi bi-exclamation-triangle me-2"></i>Order not found
+    </div>
+  </ng-template>
+</div>
