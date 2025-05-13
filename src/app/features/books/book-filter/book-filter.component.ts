@@ -4,7 +4,7 @@ import { CategoryService } from '../../../core/services/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BookFilterService } from '../../../core/services/book-filter.service';
-import { Category } from '../../../core/models/category';
+import { Category } from '../../../core/models/Category';
 
 @Component({
   selector: 'app-book-filter',
